@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+          <p:megaMenu  style="margin-top:20px">
+              <p:submenu label="Contable" icon="ui-icon-check" rendered="#{login.operador}">
+                    <p:column>
+                        <p:submenu label="">
+                            <p:menuitem value="Cuentas" url="contable/contables.xhtml" />
+                            <p:menuitem value="Destinatarios" url="contable/destinatarios.xhtml" />
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+                
+                <p:submenu label="Maestras" icon="ui-icon-check">
+                    <p:column>
+                        <p:submenu label="">
+                            <p:menuitem value="Areas" url="#" />
+                            <p:menuitem value="Bienes" url="maestras/bienes.xhtml" />
+                            <p:menuitem value="Cargos" url="#" />
+                            <p:menuitem value="Estados" url="#" />
+                            <p:menuitem value="Sedes" url="#" />
+                            <p:menuitem value="Tipologias" url="#" />
+                            <p:menuitem value="Tipo asignaciones" url="#" />
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+                
+                <p:submenu label="Procedimientos" icon="ui-icon-check" rendered="#{login.operador}">
+                    <p:column>
+                        <p:submenu label="">
+                            <p:menuitem value="Consecutivos" url="#" />
+                            <p:menuitem value="Depreciacion" url="#" />
+                            <p:menuitem value="Asignaciones" url="#" />
+                            <p:menuitem value="Formato bienes" url="#" />
+                            <p:menuitem value="#{login.operador}"/>
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+                
+                <p:submenu label="Personal" icon="ui-icon-check">
+                    <p:column>
+                        <p:submenu label="">
+                            <p:menuitem value="Funcionarios" url="#" />                            
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+                
+                <p:submenu label="Sistema" icon="ui-icon-check" rendered="#{login.operador}">
+                    <p:column>
+                        <p:submenu label="">
+                            <p:menuitem value="Reportes" url="#" />
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+
+                <p:menuitem value="Salir" url="index.xhtml" icon="ui-icon-close" />
+            </p:megaMenu>
+        </h:form>
+    </h:body>
+</html>

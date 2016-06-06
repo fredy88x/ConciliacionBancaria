@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cuentas</title>
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <p:megaMenu  style="margin-top:20px">
+                <p:submenu label="Contable" icon="ui-icon-check">
+                    <p:column>
+                        <p:submenu label="">
+                            <p:menuitem value="Cuentas" url="cuentas.xhtml?faces-redirect=true" />
+                            <p:menuitem value="Destinatarios" url="destinatarios.xhtml?faces-redirect=true" />
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+
+                <p:submenu label="Maestras" icon="ui-icon-check">
+                    <p:column>
+                        <p:submenu label="">
+                            <p:menuitem value="Areas" url="#" />
+                            <p:menuitem value="Bienes" url="#" />
+                            <p:menuitem value="Cargos" url="#" />
+                            <p:menuitem value="Estados" url="#" />
+                            <p:menuitem value="Sedes" url="#" />
+                            <p:menuitem value="Tipologias" url="#" />
+                            <p:menuitem value="Tipo asignaciones" url="#" />
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+
+                <p:submenu label="Procedimientos" icon="ui-icon-check">
+                    <p:column>
+                        <p:submenu label="">
+                            <p:menuitem value="Consecutivos" url="#" />
+                            <p:menuitem value="Depreciacion" url="depreciacion.xhtml?faces-redirect=true" />
+                            <p:menuitem value="Asignaciones" url="#" />
+                            <p:menuitem value="Formato bienes" url="#" />
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+
+                <p:submenu label="Personal" icon="ui-icon-check">
+                    <p:column>
+                        <p:submenu label="">
+                            <p:menuitem value="Funcionarios" url="#" />                            
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+
+                <p:submenu label="Sistema" icon="ui-icon-check">
+                    <p:column>
+                        <p:submenu label="">
+                            <p:menuitem value="Reportes" url="#" />
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+
+          
+            </p:megaMenu>
+
+            <div id="form" style="width: 200px; top: 250px;
+ margin: 0 auto;">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Cuenta: "/>
+                    <h:inputText value="#{contables.cuenta}"/>
+                    <h:outputLabel value="Nombre: "/>
+                    <h:inputText value="#{contables.nombre}"/>
+
+                </h:panelGrid>
+                <h:panelGrid columns="4">
+                    <h:commandButton value="Consultar"/>
+                    <h:commandButton value="Actualizar"/>
+                    <h:commandButton value="Eliminar"/>                
+                </h:panelGrid>
+            </div>
+        </h:form>
+    </h:body>
+</html>

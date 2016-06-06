@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Bienes</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:growl id="mensajes"/>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="CODIGO"/>
+                <h:inputText value="#{bienes.codigo}"/>
+            </h:panelGrid>
+            
+            <h:panelGrid columns="6">
+                <h:outputLabel value="Placa UGPP"/>
+                    <h:inputText value="#{bienes.placa}"/>
+                    <h:outputLabel value="Tipologia"/>
+                        <p:selectOneMenu id="console" value="#{bienes.tipologia}" style="width:125px">
+                            <f:selectItems itemLabel="#{itera[1]}" itemValue="#{itera[0]}" var="itera" value="#{bienes.nombreTipologias}"/>
+                        </p:selectOneMenu>
+                    <h:outputLabel value="Codigo"/>
+                    <p:selectOneMenu id="codigoq" value="#{bienes.consecutivo}" style="width:125px">
+                        <f:selectItems itemLabel="#{itera1[1]}" itemValue="#{itera1[0]}" var="itera1" value="#{bienes.listaconsecutivos}"/>
+                    </p:selectOneMenu>
+                    
+                    
+                    <h:outputLabel value="Sede"/>
+                    <p:selectOneMenu id="codigow" value="#{bienes.sede}" style="width:125px">
+                        <f:selectItems itemLabel="#{itera2[1]}" itemValue="#{itera2[0]}" var="itera2" value="#{bienes.listasedes}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Placa externa"/>
+                    <h:inputText value="#{bienes.placaexterna}"/>
+                    
+                    <h:outputLabel value="Llave"/>
+                    <h:inputText value="#{bienes.llave}"/>
+                                        
+            </h:panelGrid>
+            
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Descripcion Detallada"/>
+                <h:inputTextarea value="#{bienes.descripciondetallada}"/>
+
+            </h:panelGrid>
+            
+            <h:panelGrid columns="4">
+                <h:outputLabel value="Descripcion"/>
+                <p:inputText value="#{bienes.descripcion}"/>
+                
+                <h:outputLabel value="Cantidad"/>
+                <h:inputText value="#{bienes.cantidad}"/>                
+            </h:panelGrid>
+            
+            <h:panelGrid columns="6">
+                <h:outputLabel value="Valor"/>
+                <h:inputText value="#{bienes.valor}"/>
+                
+                <h:outputLabel value="Factura"/>
+                <h:inputText value="#{bienes.factura}"/>
+                
+                <h:outputLabel value="Fecha"/>
+                <p:calendar id="popup" value="#{bienes.fechas}" />                
+            </h:panelGrid>
+            
+            <h:panelGrid columns="8">
+                <h:outputLabel  value="Vida Util/Meses"/>
+                <h:inputText  value="#{bienes.vidautil}"/>
+                <h:outputLabel  value="Serial"/>
+                <h:inputText  value="#{bienes.serial}"/>
+                <h:outputLabel  value="Marca"/>
+                <h:inputText  value="#{bienes.marca}"/>
+                <h:outputLabel  value="Modelo"/>
+                <h:inputText  value="#{bienes.modelo}"/>
+             </h:panelGrid>
+            
+            <h:panelGrid columns="6">
+                <h:outputLabel  value="Destinatario"/>
+                <p:selectOneMenu id="uno" value="#{bienes.destinatarios}" style="width:125px">
+                    <f:selectItems itemLabel="#{itera2[1]}" itemValue="#{itera2[0]}" var="itera2" value="#{bienes.listadestinatarios}"/>
+                    </p:selectOneMenu>
+                
+                <h:outputLabel  value="Cuenta activo"/>
+                <p:selectOneMenu id="dos" value="#{bienes.cuentaactivo}" style="width:125px">
+                        <f:selectItems itemLabel="#{itera2[1]}" itemValue="#{itera2[0]}" var="itera2" value="#{bienes.listaconsecutivos}"/>
+                    </p:selectOneMenu>
+                
+                <h:outputLabel  value="Cuenta Descripcion"/>
+                <p:selectOneMenu id="tres" value="#{bienes.cuentadepreciacion}" style="width:125px">
+                    <f:selectItems itemLabel="#{itera2[1]}" itemValue="#{itera2[0]}" var="itera2" value="#{bienes.listadepreciacion}"/>
+                    </p:selectOneMenu>
+            </h:panelGrid>
+            
+            
+            <h:panelGrid columns="6">
+                <h:outputLabel  value="Saldo"/>
+                <h:inputText value="#{bienes.saldo}"/>
+                
+                <h:outputLabel  value="Estado"/>
+                <p:selectOneMenu id="cuatroo" value="#{bienes.estado}" style="width:125px">
+                    <f:selectItem itemLabel="Activo" itemValue="activo" />
+                    <f:selectItem itemLabel="Inactivo" itemValue="pasivo" />
+                    </p:selectOneMenu>
+                
+                <h:outputLabel  value="Aplica Dep"/>
+                <h:inputText value="#{bienes.aplicdep}"/>
+            </h:panelGrid>
+            
+            <h:outputLabel value="Funcionario"/>
+            <p:selectOneMenu id="cuatro" value="#{bienes.funcionario}" style="width:125px">
+                <f:selectItems itemLabel="#{itera2[1]}" itemValue="#{itera2[0]}" var="itera2" value="#{bienes.listaproveedores}"/>
+             </p:selectOneMenu>
+            
+            <h:panelGrid columns="4">
+                <p:commandButton value="Crear" actionListener="#{bienes.buttonAction}" update="mensajes"/>
+            <!--<h:commandButton value="Modificar" action="#{bienes.crearBienes()}"/>-->
+            
+            
+            </h:panelGrid>
+            
+        </h:form>
+        <!--
+        <h:commandButton value="Eliminar" onclick="PF('eliminar').show();"/>
+        <h:commandButton value="Consultar" onclick="PF('dlg1').show();"/> -->           
+        
+        
+        <p:dialog header="Basic Dialog" widgetVar="eliminar" minHeight="40" modal="true">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Codigo"/>
+                    <h:inputText  value="#{bienes.codigo}"/>
+                    <h:commandButton action="#{bienes.eliminarBienes}"/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+        
+        
+        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" modal="true">
+            <p:dataTable value="#{bienes.listabienes}" var="iterador">
+                <p:column headerText="ID">
+                    <h:outputText value="#{iterador[0]}" />
+                </p:column>
+                
+                <p:column headerText="Cuenta activos">
+                    <h:outputText value="#{iterador[1]}" />
+                </p:column>
+                
+                <p:column headerText="Placa">
+                    <h:outputText value="#{iterador[2]}" />
+                </p:column>
+                
+                <p:column headerText="Tiopologia">
+                    <h:outputText value="#{iterador[3]}" />
+                </p:column>
+                
+                <p:column headerText="Consecutivo">
+                    <h:outputText value="#{iterador[4]}" />
+                </p:column>
+                
+                <p:column headerText="Nombre ">
+                    <h:outputText value="#{iterador[5]}" />
+                </p:column>
+                
+                <p:column headerText="Sede">
+                    <h:outputText value="#{iterador[6]}" />
+                </p:column>
+                
+                <p:column headerText="Placa Externa">
+                    <h:outputText value="#{iterador[7]}" />
+                </p:column>
+                
+                <p:column headerText="Entrega">
+                    <h:outputText value="#{iterador[8]}" />
+                </p:column>
+                
+                <p:column headerText="Llave">
+                    <h:outputText value="#{iterador[9]}" />
+                </p:column>
+                
+                <p:column headerText="Detalle">
+                    <h:outputText value="#{iterador[10]}" />
+                </p:column>
+                <p:column headerText="Descripcion">
+                    <h:outputText value="#{iterador[11]}" />
+                </p:column>
+                
+                <p:column headerText="Cantidad">
+                    <h:outputText value="#{iterador[12]}" />
+                </p:column>
+                
+                <p:column headerText="Valor">
+                    <h:outputText value="#{iterador[13]}" />
+                </p:column>
+                <p:column headerText="Factura">
+                    <h:outputText value="#{iterador[14]}" />
+                </p:column>
+                <p:column headerText="Fecha ">
+                    <h:outputText value="#{iterador[15]}" />
+                </p:column>
+                
+                <p:column headerText="Vida Util">
+                    <h:outputText value="#{iterador[16]}" />
+                </p:column>
+                
+                <p:column headerText="Marca">
+                    <h:outputText value="#{iterador[17]}" />
+                </p:column>
+                
+                <p:column headerText="Modelo">
+                    <h:outputText value="#{iterador[18]}" />
+                </p:column>
+                
+                <p:column headerText="Destinatario">
+                    <h:outputText value="#{iterador[19]}" />
+                </p:column>
+                
+                <p:column headerText="Cuenta activo">
+                    <h:outputText value="#{iterador[20]}" />
+                </p:column>
+                
+                <p:column headerText="Cuenta dev">
+                    <h:outputText value="#{iterador[21]}" />
+                </p:column>
+                
+                <p:column headerText="Acumulado">
+                    <h:outputText value="#{iterador[22]}" />
+                </p:column>
+                
+                
+                <p:column headerText="Saldo">
+                    <h:outputText value="#{iterador[23]}" />
+                </p:column>
+                
+                
+                <p:column headerText="Estado">
+                    <h:outputText value="#{iterador[24]}" />
+                </p:column>
+                
+                
+                <p:column headerText="Aplica">
+                    <h:outputText value="#{iterador[25]}" />
+                </p:column>
+            </p:dataTable>
+                
+</p:dialog>
+ 
+    </h:body>
+</html>
