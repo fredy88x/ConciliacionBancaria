@@ -1,21 +1,25 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:z="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Facelet Title</title>
+        <link  rel="stylesheet"  type="text/css" href="css/style.css"></link>
     </h:head>
-    <h:body>
-        <h:form>
-            <h:panelGrid columns="2">
-            <h:outputLabel value="Usuario"/>
-            <h:inputText value="#{login.usuario}"/>
-            <h:outputLabel value="Contraseña"/>
-            <h:inputSecret value="#{login.contrasenia}"/>
-            </h:panelGrid>
-            <h:commandButton value="Login" action="#{login.login()}" />
-        </h:form>
-        
+    <h:body styleClass="body">
+        <div class="login">
+            <div class="contenido">
+           <h:form>
+                <h:panelGrid columns="1">
+                    <h:graphicImage value="images/logotipo-small.png" alt="no se puede mostrar"/>
+                    <h:inputText styleClass="cajatxt" value="#{login.usuario}" z:placeholder="Username" size="30"/>
+                    <h:inputSecret styleClass="cajatxt" value="#{login.contrasenia}" z:placeholder="Password" size="30"/>
+                </h:panelGrid>
+               <h:commandButton styleClass="boton" value="Login" action="#{login.login()}" />
+            </h:form>
+            </div>
+        </div>
     </h:body>
 </html>
 
