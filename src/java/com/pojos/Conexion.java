@@ -6,8 +6,12 @@
 package com.pojos;
 
 import com.proyecto.Clases.Cuentas;
+import com.proyecto.Clases.Estado;
+import java.util.logging.Logger;
+import com.utils.Constantes;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -15,6 +19,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  *
@@ -200,6 +205,23 @@ public class Conexion {
         }
         return respuesta;
     }
+    
+    public boolean insertarEstados(Estado estado)throws Exception{
+        PreparedStatement pstmt=null;
+        boolean respuesta = true;
+        try {
+           pstmt = con.prepareStatement(Constantes.INSERTAR_ESTADO);
+           pstmt.setString(1, estado.getNombre());
+           pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Una excepcion a ocurrido " + e.getMessage());
+            respuesta = false;
+        }
+        finally{
+            pstmt.close();
+        }
+        return respuesta;
+    }
 
     public boolean updateBienes(String codigo, String placa, String tipologia, String consecutivo, String sede, String placaexterna, String llave, String descripcion, String descripciondetallada, String cantidad, String valor, String factura, Date fechas, String vidautil, String serial, String marca, String modelo, String destinatarios, String uentaactivo, String cuentadepreciacion, String saldo, String estado, String aplicdep, String funcionario) {
         try {
@@ -285,6 +307,54 @@ public class Conexion {
             stmt = con.createStatement();
             stmt.executeUpdate("delete from bienes where bie_id='" + codigo + "'");
         } catch (Exception e) {
+        }
+    }
+    
+    public List<Estado> listarEstados()throws SQLException{
+        List<Estado> lista = new ArrayList<>();
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        Estado estado = null;
+        try {
+            pstmt = con.prepareStatement(Constantes.LISTA_ESTADOS);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                estado = new Estado();
+                estado.setEstado_id(rs.getInt("ESTADO_ID"));
+                estado.setNombre(rs.getString("NOMBRE"));
+                lista.add(estado);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
+            e.getMessage();
+        }
+        return lista;
+    }
+    
+    public void eliminarEstado(int estadoId)throws SQLException{
+        PreparedStatement pstmt;
+        try {
+            pstmt = con.prepareStatement(Constantes.ELIMINAR_ESTADO);
+            pstmt.setInt(1, estadoId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
+            
+        }
+    }
+    
+    public void actualizarEstado(Estado estado)throws SQLException{
+        PreparedStatement pstmt;
+        try {
+            pstmt = con.prepareStatement(Constantes.ACTUALIZAR_ESTADO);
+            pstmt.setInt(1, estado.getEstado_id());
+            pstmt.setString(2, estado.getNombre());
+            pstmt.setInt(3, estado.getEstado_id());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
+            e.getMessage();
         }
     }
 

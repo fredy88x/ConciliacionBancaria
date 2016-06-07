@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Estados</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form id="form1">
+        <p:growl id="mensajesest" showDetail="true"/>
+        <div align="center">
+        <p:panel header="Registro de Estados" style="font-family: Arial, Verdana;font-size: 12px;width: 750px">
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Nombre de Estado: " for="estado_nom"/>
+                <p:inputText id="estado_nom" value="#{EstadoBean.nombre}" required="true" requiredMessage="Debe especificar un nombre de estado"/>
+            </h:panelGrid>
+            <f:facet name="footer">
+                <p:commandButton value="Registrar" actionListener="#{EstadoBean.insertarRegistro}" update=":form1:mensajesest, :form2:tabla"/>
+            </f:facet>
+        </p:panel>
+        
+        </div>
+        </h:form>
+        <h:form id="form2">
+        <div align="center">
+        
+        <p:fieldset legend="Lista de Estados" style="font-family: Arial, Verdana;font-size: 12px;width: 750px">
+            <p:dataTable id="tabla" value="#{EstadoBean.estados}" editable="true" var="estado" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15,20">
+                <f:facet name="header">
+                    <h:outputText value="Lista de Estados"/>
+                </f:facet>
+                <p:ajax event="rowEdit" listener="#{EstadoBean.onRowEdit}" update=":form1:mensajesest,:form2:tabla"/>
+                <p:ajax event="rowEditCancel" listener="#{EstadoBean.onRowCancel}" update=":form1:mensajesest,:form2:tabla"/>
+                <p:column headerText="Estado Id">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{estado.estado_id}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{estado.estado_id}" label="Estado Id"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{estado.nombre}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{estado.nombre}" label="Nombre"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+               <p:column>
+                    <p:commandButton value="Eliminar" icon="ui-icon-trash"
+                                     actionListener="#{EstadoBean.eliminarEstado}" update=":form1:mensajesest,:form2:tabla">
+                        <f:param name="estadoid" value="#{estado.estado_id}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width: 32px">
+                    <p:rowEditor/>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+            
+        </div>
+         </h:form>
+    </h:body>
+</html>
